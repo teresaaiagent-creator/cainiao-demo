@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>极准网络科技有限公司 — 中国领先的流量变现服务平台 | 2026</title>
+<style>
+:root {
+  --bg: #0a0e17; --surface: #111827; --card: #161e2c; --border: #1e293b;
+  --primary: #3b82f6; --primary-glow: rgba(59,130,246,.3); --accent: #06b6d4;
+  --accent2: #8b5cf6; --accent3: #f59e0b; --text: #e2e8f0; --muted: #94a3b8;
+  --success: #10b981; --danger: #ef4444; --radius: 16px; --shadow: 0 4px 40px rgba(0,0,0,.4);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Inter", sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.7; overflow-x:hidden;
+}
+
+/* Animated background */
+.bg-grid {
+  position: fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(59,130,246,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,130,246,.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.bg-orb { position:fixed; border-radius:50%; filter:blur(120px); opacity:.15; z-index:0; pointer-events:none; }
+.bg-orb-1 { width:600px; height:600px; background:var(--primary); top:-200px; left:-100px; }
+.bg-orb-2 { width:500px; height:500px; background:var(--accent2); bottom:-200px; right:-100px; }
+.bg-orb-3 { width:400px; height:400px; background:var(--accent); top:50%; left:50%; transform:translate(-50%,-50%); }
+
+.container { max-width:1200px; margin:0 auto; padding:0 24px; position:relative; z-index:1; }
+
+/* Hero */
+.hero {
+  position:relative; z-index:1; text-align:center; padding:100px 0 80px;
+  border-bottom:1px solid var(--border);
+}
+.hero .year-tag {
+  display:inline-block; padding:6px 20px; border-radius:20px;
+  background:linear-gradient(135deg,var(--primary),var(--accent2));
+  font-size:13px; font-weight:600; color:#fff; margin-bottom:24px; letter-spacing:2px;
+}
+.hero h1 { font-size:48px; font-weight:800; letter-spacing:-1px; margin-bottom:16px; }
+.hero h1 .gradient { background:linear-gradient(135deg,var(--primary),var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero .subtitle { font-size:18px; color:var(--muted); max-width:600px; margin:0 auto 32px; }
+.hero .stats { display:flex; justify-content:center; gap:60px; flex-wrap:wrap; margin-top:40px; }
+.hero .stat { text-align:center; }
+.hero .stat .num { font-size:36px; font-weight:800; background:linear-gradient(135deg,var(--primary),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero .stat .label { font-size:13px; color:var(--muted); margin-top:4px; }
+
+/* Sections */
+.section { position:relative; z-index:1; padding:80px 0; border-bottom:1px solid var(--border); }
+.section-tag { display:inline-block; font-size:12px; font-weight:700; letter-spacing:3px; color:var(--primary); text-transform:uppercase; margin-bottom:16px; }
+.section h2 { font-size:32px; font-weight:700; margin-bottom:12px; letter-spacing:-.5px; }
+.section .lead { font-size:16px; color:var(--muted); max-width:700px; margin-bottom:48px; line-height:1.8; }
+
+/* Cards */
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.card {
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+  padding:32px; transition:all .3s ease; position:relative; overflow:hidden;
+}
+.card:hover { border-color:var(--primary); transform:translateY(-2px); box-shadow:0 8px 30px rgba(59,130,246,.1); }
+.card .icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px; }
+.card h4 { font-size:17px; font-weight:700; margin-bottom:8px; }
+.card p { font-size:14px; color:var(--muted); line-height:1.7; }
+
+/* Glass morph card */
+.glass { background:rgba(255,255,255,.03); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.06); }
+
+/* Feature highlight */
+.feature-row { display:flex; gap:24px; align-items:center; margin-bottom:40px; }
+.feature-row.reverse { flex-direction:row-reverse; }
+.feature-row .feature-text { flex:1; }
+.feature-row .feature-visual { flex:1; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:40px; text-align:center; }
+.feature-row h3 { font-size:24px; font-weight:700; margin-bottom:12px; }
+.feature-row p { color:var(--muted); font-size:15px; line-height:1.8; }
+
+/* Data highlight */
+.data-highlight { display:flex; gap:16px; flex-wrap:wrap; margin:24px 0; }
+.data-chip {
+  background:var(--card); border:1px solid var(--border); border-radius:12px;
+  padding:16px 24px; text-align:center; flex:1; min-width:140px;
+}
+.data-chip .value { font-size:28px; font-weight:800; color:var(--primary); }
+.data-chip .label { font-size:12px; color:var(--muted); margin-top:4px; }
+
+/* Ad format badges */
+.format-grid { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+.format-badge {
+  padding:12px 24px; border-radius:12px; background:var(--card); border:1px solid var(--border);
+  font-size:14px; font-weight:600; text-align:center; transition:all .3s;
+}
+.format-badge:hover { border-color:var(--primary); box-shadow:0 0 20px var(--primary-glow); }
+.format-badge .emoji { font-size:28px; display:block; margin-bottom:6px; }
+
+/* Case study */
+.case-card {
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+  padding:36px; position:relative; overflow:hidden;
+}
+.case-card::before {
+  content:''; position:absolute; top:0; left:0; width:4px; height:100%;
+  background:linear-gradient(180deg,var(--primary),var(--accent2));
+}
+.case-card .case-header { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:16px; }
+.case-card h4 { font-size:20px; font-weight:700; }
+.case-card .case-tag { padding:4px 14px; border-radius:20px; font-size:12px; font-weight:600; background:rgba(59,130,246,.15); color:var(--primary); }
+.case-card .case-metrics { display:flex; gap:24px; flex-wrap:wrap; margin-top:16px; }
+.case-card .metric .m-val { font-size:24px; font-weight:800; color:var(--accent); }
+.case-card .metric .m-label { font-size:12px; color:var(--muted); }
+
+/* Flow steps */
+.flow-horiz { display:flex; gap:0; align-items:center; justify-content:center; flex-wrap:wrap; }
+.flow-horiz .step {
+  background:var(--card); border:1px solid var(--border); border-radius:12px;
+  padding:20px 24px; text-align:center; min-width:160px; position:relative;
+}
+.flow-horiz .step .step-num {
+  width:28px; height:28px; border-radius:50%; background:var(--primary);
+  display:inline-flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; margin-bottom:8px;
+}
+.flow-horiz .arrow { font-size:24px; color:var(--primary); margin:0 8px; }
+
+/* Security grid */
+.sec-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+.sec-card {
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:28px;
+  display:flex; gap:16px; align-items:flex-start;
+}
+.sec-card .sec-icon { font-size:28px; flex-shrink:0; }
+.sec-card h4 { font-size:16px; font-weight:700; margin-bottom:4px; }
+.sec-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+
+/* Tabs for case studies */
+.tab-nav { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px; }
+.tab-btn {
+  padding:10px 24px; border-radius:10px; border:1px solid var(--border); background:transparent;
+  color:var(--text); font-size:14px; font-weight:600; cursor:pointer; transition:all .3s;
+}
+.tab-btn:hover { border-color:var(--primary); }
+.tab-btn.active { background:var(--primary); border-color:var(--primary); color:#fff; }
+
+/* Partners */
+.partner-scroll { display:flex; gap:20px; overflow-x:auto; padding:10px 0; scrollbar-width:none; }
+.partner-scroll::-webkit-scrollbar { display:none; }
+.partner-logo {
+  flex-shrink:0; width:100px; height:48px; background:var(--card); border:1px solid var(--border);
+  border-radius:10px; display:flex; align-items:center; justify-content:center;
+  font-size:13px; color:var(--muted); font-weight:600;
+}
+
+/* Footer CTA */
+.cta-section {
+  position:relative; z-index:1; text-align:center; padding:80px 0;
+  background:radial-gradient(ellipse at center, rgba(59,130,246,.1) 0%, transparent 70%);
+}
+.cta-section h2 { font-size:36px; font-weight:800; margin-bottom:16px; }
+.cta-section p { color:var(--muted); font-size:16px; margin-bottom:32px; }
+.cta-btn {
+  display:inline-block; padding:16px 48px; border-radius:12px;
+  background:linear-gradient(135deg,var(--primary),var(--accent2));
+  color:#fff; font-size:16px; font-weight:700; text-decoration:none;
+  transition:all .3s; box-shadow:0 4px 20px rgba(59,130,246,.3);
+}
+.cta-btn:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(59,130,246,.4); }
+
+.footer { text-align:center; padding:40px; color:var(--muted); font-size:13px; border-top:1px solid var(--border); position:relative; z-index:1; }
+
+/* Glow line */
+.glow-divider { height:1px; background:linear-gradient(90deg,transparent,var(--primary),transparent); margin:0 auto; max-width:600px; opacity:.5; }
+
+@media (max-width:768px) {
+  .hero h1 { font-size:32px; }
+  .grid2,.grid3,.grid4 { grid-template-columns:1fr; }
+  .sec-grid { grid-template-columns:1fr; }
+  .feature-row, .feature-row.reverse { flex-direction:column; }
+  .hero .stats { gap:30px; }
+  .data-highlight { gap:8px; }
+  .data-chip { min-width:100px; padding:12px 16px; }
+  .data-chip .value { font-size:22px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+
+<!-- ==================== HERO ==================== -->
+<div class="hero">
+  <div class="container">
+    <div class="year-tag">2026 · PROGRAMMATIC ADS</div>
+    <h1><span class="gradient">极准网络科技</span></h1>
+    <p class="subtitle">中国领先的流量变现服务平台 · 独立预算广告平台<br/>上市公司极光大数据投资孵化 | 专注 SDK 程序化广告</p>
+    <div class="stats">
+      <div class="stat"><div class="num">1.98<span style="font-size:20px;">亿</span></div><div class="label">SDK 覆盖 MAU</div></div>
+      <div class="stat"><div class="num">5000<span style="font-size:20px;">万</span></div><div class="label">SDK 覆盖 DAU</div></div>
+      <div class="stat"><div class="num">400<span style="font-size:20px;">+</span></div><div class="label">合作 APP</div></div>
+      <div class="stat"><div class="num">200<span style="font-size:20px;">+</span></div><div class="label">品牌广告主</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 关于极准 ==================== -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">// ABOUT US</div>
+    <h2>关于极准</h2>
+    <p class="lead">极准网络科技有限公司，成立于 2019 年，由纳斯达克上市公司<strong style="color:#e2e8f0;">极光大数据</strong>（Aurora Mobile, NASDAQ: JG）投资孵化，是中国领先的流量变现服务平台。公司专注于 SDK 程序化广告技术，为互联网各行业 APP、小程序等流量主提供丰富的流量变现场景，全面提升广告变现收入。</p>
+
+    <div class="grid3" style="margin-top:48px;">
+      <div class="card">
+        <div class="icon" style="background:rgba(59,130,246,.15);">💰</div>
+        <h4>独立广告预算</h4>
+        <p>自有独立广告源预算，全面覆盖电商、教育、会员权益等多行业，大部分为一手独立预算，确保填充率与收益稳定。</p>
+      </div>
+      <div class="card">
+        <div class="icon" style="background:rgba(139,92,246,.15);">🧠</div>
+        <h4>极光技术支撑</h4>
+        <p>借助极光大数据能力，实现广告精准匹配与定向投放，大幅提升流量利用率。极光+极准团队大数据融合，SDK 系统稳定运行。</p>
+      </div>
+      <div class="card">
+        <div class="icon" style="background:rgba(6,182,212,.15);">🎯</div>
+        <h4>真丰富 · 真可靠 · 保安全</h4>
+        <p>广告样式丰富，覆盖标准与非标位；合作品牌 200+，60%+ 为品牌广告；银行级安全加密，严格合规体系保障。</p>
+      </div>
+    </div>
+
+    <div class="data-highlight" style="margin-top:40px;">
+      <div class="data-chip"><div class="value">2019</div><div class="label">成立年份</div></div>
+      <div class="data-chip"><div class="value">极光大数据</div><div class="label">投资方（NASDAQ: JG）</div></div>
+      <div class="data-chip"><div class="value">60%+</div><div class="label">技术研发人员占比</div></div>
+      <div class="data-chip"><div class="value">10年+</div><div class="label">团队平均广告行业经验</div></div>
+      <div class="data-chip"><div class="value">100%</div><div class="label">本科以上学历</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 广告样式 ==================== -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">// AD FORMATS</div>
+    <h2>极准广告 SDK</h2>
+    <p class="lead">既可对接常规 SDK 广告位，更有独家创新样式，深度融入产品生态。支持根据 App 页面风格定制化设计广告素材，保持视觉一致性，最大程度减少对用户打扰。</p>
+
+    <h3 style="margin:40px 0 20px; font-size:18px; color:var(--accent);">标准广告位 · RTB 实时竞价</h3>
+    <div class="format-grid">
+      <div class="format-badge"><span class="emoji">📱</span>开屏广告</div>
+      <div class="format-badge"><span class="emoji">📰</span>插屏广告</div>
+      <div class="format-badge"><span class="emoji">📋</span>信息流广告</div>
+      <div class="format-badge"><span class="emoji">🎬</span>激励视频</div>
+      <div class="format-badge"><span class="emoji">🏷️</span>Banner</div>
+      <div class="format-badge"><span class="emoji">▶️</span>视频广告</div>
+    </div>
+
+    <h3 style="margin:40px 0 20px; font-size:18px; color:var(--accent2);">独家创新样式 · 非标高收益</h3>
+    <div class="format-grid">
+      <div class="format-badge"><span class="emoji">🪟</span>悬屏广告<p style="font-size:11px;color:var(--muted);margin-top:4px;">半屏展示，互动性强</p></div>
+      <div class="format-badge"><span class="emoji">🔘</span>功能 Icon<p style="font-size:11px;color:var(--muted);margin-top:4px;">原生样式，融入界面</p></div>
+      <div class="format-badge"><span class="emoji">💬</span>浮窗图标<p style="font-size:11px;color:var(--muted);margin-top:4px;">灵活展示，入口隐蔽</p></div>
+      <div class="format-badge"><span class="emoji">📢</span>Push 推送<p style="font-size:11px;color:var(--muted);margin-top:4px;">精准触达</p></div>
+    </div>
+
+    <div class="card glass" style="margin-top:32px; text-align:center;">
+      <p style="font-size:15px; color:var(--text);"><strong>💡 悬屏广告</strong> — 极准独家开发创新场景，支持全量流量包断与独家合作。<br/>CPS 90% 高比例分成（合作方 90%，极准 10%），中小大悬屏 eCPM 2-20 元/千次展示，最大化商业价值。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 广告资源 ==================== -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">// AD RESOURCES</div>
+    <h2>广告资源与预算</h2>
+    <p class="lead">极准广告预算全面覆盖电商、教育、会员权益等多行业，大部分为一手独立预算。涵盖 SDK、H5、短剧、定制化任务等多种对接方式。</p>
+
+    <div class="grid4" style="margin-top:40px;">
+      <div class="card" style="text-align:center;">
+        <div style="font-size:36px;font-weight:800;color:var(--primary);">200+</div>
+        <p style="color:var(--muted);">知名品牌</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:36px;font-weight:800;color:var(--accent);">100+</div>
+        <p style="color:var(--muted);">头部广告主</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:36px;font-weight:800;color:var(--accent2);">60%+</div>
+        <p style="color:var(--muted);">品牌广告占比</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:36px;font-weight:800;color:var(--accent3);">95%+</div>
+        <p style="color:var(--muted);">广告填充率</p>
+      </div>
+    </div>
+
+    <div class="card glass" style="margin-top:32px; text-align:center;">
+      <p style="font-size:15px;"><strong>🔒 承诺保价保填充</strong> — 自有独立广告源预算，一手预算保障长期稳定变现收益。<br/>品牌直客合作，小众 DSP / ADX 平台禁入，确保广告素材源头规范。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 技术团队 ==================== -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">// TEAM</div>
+    <h2>技术团队</h2>
+    <p class="lead">我们的技术和运营团队，平均深耕广告行业 10 年以上，100% 拥有本科以上学历，可以说是程序化广告的"鼻祖"，培养了行业内非常多的广告人才。</p>
+
+    <div class="grid3" style="margin-top:40px;">
+      <div class="card glass" style="text-align:center;">
+        <div style="font-size:40px;margin-bottom:12px;">👨‍💻</div>
+        <h4>技术研发</h4>
+        <div style="font-size:32px;font-weight:800;color:var(--primary);">60%+</div>
+        <p style="color:var(--muted);">研发人员占比</p>
+      </div>
+      <div class="card glass" style="text-align:center;">
+        <div style="font-size:40px;margin-bottom:12px;">📊</div>
+        <h4>运营服务</h4>
+        <div style="font-size:32px;font-weight:800;color:var(--accent);">20%</div>
+        <p style="color:var(--muted);">运营人员占比</p>
+      </div>
+      <div class="card glass" style="text-align:center;">
+        <div style="font-size:40px;margin-bottom:12px;">🏆</div>
+        <h4>行业经验</h4>
+        <div style="font-size:32px;font-weight:800;color:var(--accent2);">10年+</div>
+        <p style="color:var(--muted);">平均从业年限</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 安全保障 ==================== -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">// SECURITY</div>
+    <h2>安全保障体系</h2>
+    <p class="lead">严格遵循工信部及行业相关安全标准，建立完善的合规体系，实现对接安全性与合规性的双重保障。</p>
+
+    <div class="sec-grid" style="margin-top:40px;">
+      <div class="sec-card">
+        <div class="sec-icon">🔍</div>
+        <div>
+          <h4>代码审查与漏洞修复</h4>
+          <p>定期对广告 SDK 代码进行审查，及时修复漏洞，保障低崩溃率，确保代码质量和安全性。</p>
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-icon">🔐</div>
+        <div>
+          <h4>银行级加密传输</h4>
+          <p>采用安全的加密算法和协议，确保广告数据在传输过程中不被破解、拦截或恶意篡改。</p>
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-icon">🛡️</div>
+        <div>
+          <h4>权限控制</h4>
+          <p>严格限制广告 SDK 对用户设备和敏感数据的访问权限，从源头杜绝隐私信息泄露与滥用。</p>
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-icon">📋</div>
+        <div>
+          <h4>多重内容审核</h4>
+          <p>三维交叉屏蔽（行业/包名/关键词）+ AI 机器人机审 + 人工复审抽查，确保素材合规。</p>
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-icon">⚖️</div>
+        <div>
+          <h4>政策合规</h4>
+          <p>严格遵循工信部及行业安全标准，明确用户数据收集和使用政策，遵守相关法律法规。</p>
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-icon">👁️</div>
+        <div>
+          <h4>实时投放监控</h4>
+          <p>实时监控广告投放情况，发现异常行为及时处理，保证广告环境的安全性和品质。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="glow-divider"></div>
+
+<!-- ==================== 收益运营规划 ==================== -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">// OPERATIONS</div>
+    <h2>收益运营规划</h2>
+    <p class="lead">从上线初期准备到后期精细化运营，三阶段全周期服务，最大化广告位利用率与变现收益。</p>
+
+    <div class="grid3" style="margin-top:40px;">
+      <div class="card" style="border-top:3px solid var(--primary);">
+        <div style="font-size:12px;font-weight:700;color:var(--primary);margin-bottom:12px;">PHASE 01</div>
+        <h4>上线初期 · 准备</h4>
+        <p style="font-size:13px;color:var(--muted);">评估分析媒体量级与 SDK 版本，确定基础投放方案。聚焦提升展示率与点击率，严格筛选优质广告素材，建立安全投放机制。</p>
+      </div>
+      <div class="card" style="border-top:3px solid var(--accent);">
+        <div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:12px;">PHASE 02</div>
+        <h4>上线中期 · 增长</h4>
+        <p style="font-size:13px;color:var(--muted);">逐步增加广告位数量提升变现效率，优化用户体验。保持广告内容质量，开放更多高价值行业广告，拓展广告合作伙伴。</p>
+      </div>
+      <div class="card" style="border-top:3px solid var(--accent2);">
+        <div style="font-size:12px;font-weight:700;color:var(--accent2);margin-bottom:12px;">PHASE 03</div>
+        <h4>上线后期 · 精细</h4>
+        <p style="font-size:13px;color:var(--muted);">基于深度数据分析调整展示策略，精准匹配用户与广告。持续拓展高相关度行业广告，打造多元化收入来源，实现长期稳健增长。</p>
+      </div>
+    </div>
+
+    <!-- Platform features -->
+    <div class="grid2" style="margin-top:40px;">
+      <div class="card glass">
+        <h4>🎛️ 广告位管理</h4>
+        <p>支持 APP 开发者灵活排序自有直客广告投放与广告平台的分销需求，实现流量的精细化管理，有效提升变现效率。</p>
+      </div>
+      <div class="card glass">
+        <h4>📢 运营活动推广</h4>
+        <p>支持将广告位直接设置为 APP 内部运营活动推广位，有效平衡运营活动与商业化广告的冲突，减少无效流量浪费。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 合作案例 ==================== -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">// CASE STUDIES</div>
+    <h2>合作案例</h2>
+    <p class="lead">已服务 400+ APP，覆盖工具、校园、教育、生活等多行业头部媒体。标准广告竞价 + 非标广告额外增收，灵活合作模式助力合作伙伴实现收益最大化。</p>
+
+    <div class="grid2" style="margin-top:40px;">
+      <div class="case-card">
+        <div class="case-header">
+          <div>
+            <span class="case-tag">工具类</span>
+            <h4 style="margin-top:8px;">马克水印相机</h4>
+          </div>
+        </div>
+        <p style="color:var(--muted);font-size:14px;">工程/外勤打卡工具，高频刚需场景</p>
+        <div class="case-metrics">
+          <div class="metric"><div class="m-val">300万+</div><div class="m-label">DAU</div></div>
+          <div class="metric"><div class="m-val">10%+</div><div class="m-label">RTB 竞胜率</div></div>
+          <div class="metric"><div class="m-val">90%+</div><div class="m-label">非标填充率</div></div>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-top:12px;">标准广告位参与 RTB 竞价，非标位（首页 Icon、专区 Banner）定制合作，最大化长尾流量价值。</p>
+      </div>
+
+      <div class="case-card">
+        <div class="case-header">
+          <div>
+            <span class="case-tag" style="background:rgba(139,92,246,.15);color:#8b5cf6;">校园类</span>
+            <h4 style="margin-top:8px;">超级课程表</h4>
+          </div>
+        </div>
+        <p style="color:var(--muted);font-size:14px;">大学生必备课表工具</p>
+        <div class="case-metrics">
+          <div class="metric"><div class="m-val">150-300万</div><div class="m-label">DAU</div></div>
+          <div class="metric"><div class="m-val">90%+</div><div class="m-label">非标填充率</div></div>
+          <div class="metric"><div class="m-val">显著</div><div class="m-label">收益提升</div></div>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-top:12px;">开屏位接入 RTB 竞价最大化填充率与价格，非标 Banner + 课程表植入等创新广告位，显著提升整体变现收益。</p>
+      </div>
+
+      <div class="case-card">
+        <div class="case-header">
+          <div>
+            <span class="case-tag" style="background:rgba(16,185,129,.15);color:#10b981;">教育类</span>
+            <h4 style="margin-top:8px;">一起作业</h4>
+          </div>
+        </div>
+        <p style="color:var(--muted);font-size:14px;">K12 教育工具，家长必备</p>
+        <div class="case-metrics">
+          <div class="metric"><div class="m-val">中小学生家长</div><div class="m-label">核心用户群</div></div>
+          <div class="metric"><div class="m-val">高填充+高变现</div><div class="m-label">双赢成果</div></div>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-top:12px;">在保障极致用户体验的前提下，实现高填充率与高变现效率的双赢，开屏广告曝光率高。</p>
+      </div>
+
+      <div class="case-card">
+        <div class="case-header">
+          <div>
+            <span class="case-tag" style="background:rgba(245,158,11,.15);color:#f59e0b;">生活类</span>
+            <h4 style="margin-top:8px;">趣智校园</h4>
+          </div>
+        </div>
+        <p style="color:var(--muted);font-size:14px;">校园生活服务平台</p>
+        <div class="case-metrics">
+          <div class="metric"><div class="m-val">300万+</div><div class="m-label">DAU</div></div>
+          <div class="metric"><div class="m-val">95%+</div><div class="m-label">广告填充率</div></div>
+          <div class="metric"><div class="m-val">+15%</div><div class="m-label">收益提升</div></div>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-top:12px;">通过定制化流量变现方案，达成双赢目标，稳定的广告填充保障广告收入增长，再次证明了灵活合作模式的有效性。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 合作流程 ==================== -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">// ONBOARDING</div>
+    <h2>合作接入流程</h2>
+    <p class="lead">轻松四步，快速上线变现。专业团队 1v1 全程对接，7×24 小时跟踪服务。</p>
+
+    <div class="flow-horiz" style="margin-top:40px;">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>联系商务</h4>
+        <p style="font-size:12px;color:var(--muted);">开通后台账户</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>广告位设置</h4>
+        <p style="font-size:12px;color:var(--muted);">创建应用和广告位</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>接入 SDK</h4>
+        <p style="font-size:12px;color:var(--muted);">应用内接入并设置</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>数据报表</h4>
+        <p style="font-size:12px;color:var(--muted);">多维变现数据报表</p>
+      </div>
+    </div>
+
+    <div class="grid3" style="margin-top:48px;">
+      <div class="card glass">
+        <div style="font-size:28px;margin-bottom:8px;">💼</div>
+        <h4>专业变现业务顾问</h4>
+        <p style="font-size:13px;color:var(--muted);">定制化变现解决方案 · App 广告位及场景设计建议 · 基于流量数据的收益预估分析</p>
+      </div>
+      <div class="card glass">
+        <div style="font-size:28px;margin-bottom:8px;">🔧</div>
+        <h4>专业技术人员指导</h4>
+        <p style="font-size:13px;color:var(--muted);">SDK 接入全程 1v1 对接指导 · 广告展示/点击全流程联调测试 · 快速响应技术难题</p>
+      </div>
+      <div class="card glass">
+        <div style="font-size:28px;margin-bottom:8px;">📊</div>
+        <h4>专业运营服务支持</h4>
+        <p style="font-size:13px;color:var(--muted);">定期变现数据报表 · 基于数据的收益优化策略 · 行业最新变现政策与动态同步</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="glow-divider"></div>
+
+<!-- ==================== CTA ==================== -->
+<div class="cta-section">
+  <div class="container">
+    <h2>开启流量变现之旅</h2>
+    <p>400+ APP 的信赖之选 · 日均 5,000 万用户触达 · 95%+ 广告填充率保障</p>
+    <a href="#" class="cta-btn">🚀 立即联系商务</a>
+  </div>
+</div>
+
+<div class="footer">
+  <p>© 2026 杭州极准网络科技有限公司 | 中国领先的流量变现服务平台 | 独立预算广告平台</p>
+  <p style="margin-top:8px;">上市公司极光大数据（NASDAQ: JG）投资孵化 | 版本 2026.06</p>
+</div>
+
+</body>
+</html>
